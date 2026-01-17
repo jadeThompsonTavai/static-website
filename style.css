@@ -1,8 +1,54 @@
 body  {
    color: #1D7D3D;
    align-content: center;
+   border: 2px solid red;
 }
 
 nav {
     color: green;
+    display: flex;
+    justify-content: center;
+    border: 2px solid blue;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+h1{
+    display: flex;
+    justify-content: center;
+}
+
+
+.image{
+    border: 2px solid yellow;
+    width: 45%;
+    margin: 2%;
+    display: inline-block;
+}
+
+.about-me {
+    border: 2px solid green;
+    display: inline-block;
+    width: 50%;
+    
+}
+
+.button-link{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3b9752; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 5px; 
+    text-align: center;
+    cursor: pointer; 
+    border: none;
+    margin-left: 2px;
+}
+
+.button-link:hover {
+    background-color: #0f771d; /* Color change on hover */
 }
