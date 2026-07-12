@@ -19,10 +19,13 @@ a {
 }
 
 header {
+    max-width: 980px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    margin: 0 auto;
+
+    /* padding: 15px 30px; */
     /* border: 1px solid red; */
 }
 
@@ -30,6 +33,10 @@ header h1{
     font-size: 1.75rem;
     letter-spacing: 1px;
     padding-left: 0px;
+}
+
+.logo-container {
+    padding-left: 10px;
 }
 
 .headline {
