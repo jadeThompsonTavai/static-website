@@ -19,8 +19,29 @@ a {
 }
 
 header {
-    padding: 1.25rem 0 0.5rem;
-    text-align: center;
+    max-width: 980px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+
+    /* padding: 15px 30px; */
+    /* border: 1px solid red; */
+}
+
+header h1{
+    font-size: 1.75rem;
+    letter-spacing: 1px;
+    padding-left: 0px;
+}
+
+.logo-container {
+    padding-left: 10px;
+}
+
+.headline {
+    color: #964B00;
+    font-size: 2rem;
 }
 
 .site-title {
@@ -73,17 +94,6 @@ nav {
 /* Dropcap styling */
 .dropcap { float: left; font-size: 4.25rem; line-height: 1; margin-right: 0.6rem; font-weight: 700; font-family: Georgia, serif; }
 
-.subscribe { background: #fbf8f3; padding: 1rem; border: 1px solid #e6e1d7; position: relative; }
-.subscribe h4 { margin-top: 0; }
-.price { font-weight: 700; margin-bottom: 0.5rem; }
-
-.stamp { position: absolute; right: 12px; top: 12px; background: #111; color: #fff; padding: 4px 8px; font-size: 0.75rem; letter-spacing: 1px; }
-
-.subscribe-form label { display:block; font-size: 0.85rem; margin-top: 0.5rem; }
-.subscribe-form input,
-.subscribe-form textarea,
-.subscribe-form select { width: 100%; padding: 8px; margin-top: 6px; border: 1px solid #ccc; border-radius: 3px; font-family: inherit; }
-
 .cta { display: inline-block; margin-top: 0.75rem; background: #111; color: #fff; border: none; padding: 10px 14px; border-radius: 4px; cursor: pointer; font-size: 1rem; }
 .cta:hover { background: #333; }
 
@@ -96,3 +106,33 @@ footer.footer { text-align: center; color: #666; font-size: 0.9rem; padding: 1re
     .columns { grid-template-columns: 1fr; }
     .dropcap { font-size: 3.5rem; }
 }
+
+/* Gallery styling */
+.gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+.gallery-item {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+.gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+ /* Image Sizing and Responsiveness */
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
