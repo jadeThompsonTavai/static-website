@@ -19,7 +19,81 @@
         </nav> 
     </header> 
     <main class="paper container">
-        <p>Here I will write down articles on things I find interesting, projects I'm working on, and other musings.</p>
+        <p class="lede">A quiet place to keep track of what I am making, thinking about, and carrying forward.</p>
+
+        <form id="log-form" class="log-form">
+            <label>
+                Date
+                <input type="date" id="log-date" required>
+            </label>
+            <label>
+                Headline
+                <input type="text" id="log-headline" placeholder="What I am working on right now" required>
+            </label>
+            <label>
+                Notes or musings
+                <textarea id="log-notes" rows="6" placeholder="Write your thoughts here..." required></textarea>
+            </label>
+            <button type="submit" class="cta">Add section</button>
+        </form>
+
+        <section id="log-list" class="log-list">
+            <article class="log-entry">
+                <p class="log-date">August 4, 2026</p>
+                <h2 class="headline">Building a calmer online space</h2>
+                <div class="log-notes">
+                    <p>Today I am shaping this log into a place for small updates, reflections, and loose ideas.</p>
+                </div>
+            </article>
+        </section>
+        
+
+    
+    
     </main>
+    <script>
+        const form = document.getElementById('log-form');
+        const dateInput = document.getElementById('log-date');
+        const headlineInput = document.getElementById('log-headline');
+        const notesInput = document.getElementById('log-notes');
+        const logList = document.getElementById('log-list');
+
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.value = today;
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const dateValue = dateInput.value || today;
+            const headlineValue = headlineInput.value.trim();
+            const notesValue = notesInput.value.trim();
+
+            if (!headlineValue || !notesValue) {
+                return;
+            }
+
+            const article = document.createElement('article');
+            article.className = 'log-entry';
+
+            const formattedDate = new Date(dateValue + 'T00:00:00').toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric'
+            });
+
+            article.innerHTML = `
+                <p class="log-date">${formattedDate}</p>
+                <h2 class="headline">${headlineValue}</h2>
+                <div class="log-notes">
+                    <p>${notesValue.replace(/\n/g, '<br>')}</p>
+                </div>
+            `;
+
+            logList.prepend(article);
+            form.reset();
+            dateInput.value = today;
+            headlineInput.focus();
+        });
+    </script>
 </body>
 </html>
