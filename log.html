@@ -21,7 +21,16 @@
     <main class="paper container">
         <p class="lede">A quiet place to keep track of what I am making, thinking about, and carrying forward.</p>
 
-        <form id="log-form" class="log-form">
+        <div id="password-section" class="password-section">
+            <label>
+                Enter password
+                <input type="password" id="log-password" placeholder="Password">
+            </label>
+            <button id="password-submit" class="cta">Unlock</button>
+            <p id="password-message" style="color:crimson; display:none; margin-top:0.5rem;"></p>
+        </div>
+
+        <form id="log-form" class="log-form" style="display:none;">
             <label>
                 Date
                 <input type="date" id="log-date" required>
@@ -52,6 +61,14 @@
     
     </main>
     <script>
+        // Password (case-sensitive) required to reveal the form
+        const PASSWORD = 'ng4h3r3';
+
+        const passwordSection = document.getElementById('password-section');
+        const passwordInput = document.getElementById('log-password');
+        const passwordSubmit = document.getElementById('password-submit');
+        const passwordMessage = document.getElementById('password-message');
+
         const form = document.getElementById('log-form');
         const dateInput = document.getElementById('log-date');
         const headlineInput = document.getElementById('log-headline');
@@ -60,6 +77,38 @@
 
         const today = new Date().toISOString().split('T')[0];
         dateInput.value = today;
+
+        function showForm() {
+            passwordSection.style.display = 'none';
+            form.style.display = '';
+            passwordMessage.style.display = 'none';
+            headlineInput.focus();
+        }
+
+        function showError(msg) {
+            passwordMessage.textContent = msg;
+            passwordMessage.style.display = 'block';
+        }
+
+        passwordSubmit.addEventListener('click', function (e) {
+            e.preventDefault();
+            const attempt = passwordInput.value || '';
+            if (attempt === PASSWORD) {
+                showForm();
+                // clear password for privacy
+                passwordInput.value = '';
+            } else {
+                showError('Incorrect password.');
+            }
+        });
+
+        // allow pressing Enter while focused in password field
+        passwordInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                passwordSubmit.click();
+            }
+        });
 
         form.addEventListener('submit', function (event) {
             event.preventDefault();
